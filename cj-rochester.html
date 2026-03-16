@@ -178,14 +178,13 @@
     background: var(--gold); border-color: var(--gold); color: var(--dark);
   }
   .photo-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 3px;
   }
   .photo-item {
     aspect-ratio: 3/4; background: var(--dark-4);
     position: relative; overflow: hidden; cursor: pointer;
   }
-  .photo-item:first-child { grid-row: span 2; aspect-ratio: auto; }
   .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
   .photo-item:hover img { transform: scale(1.05); }
   .photo-overlay {
@@ -196,11 +195,24 @@
   }
   .photo-item:hover .photo-overlay { opacity: 1; }
   .photo-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
-  /* Placeholder gradient tiles when no real images */
-  .photo-placeholder {
-    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim);
+  .modeling-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
   }
+  .modeling-item {
+    aspect-ratio: 2/3; background: var(--dark-4);
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .modeling-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+  .modeling-item:hover img { transform: scale(1.08); }
+  .modeling-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: 20px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .modeling-item:hover .modeling-overlay { opacity: 1; }
+  .modeling-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
 
   /* ── WEB DEV ── */
   #webdev { border-top: 1px solid var(--border); }
@@ -481,35 +493,99 @@
     <button class="photo-cat-btn" onclick="filterPhotos(this, 'concerts')">Concerts</button>
   </div>
   <div class="photo-grid" id="photoGrid">
-    <!-- Each item has data-cat for filtering. Placeholders styled until real images added -->
-    <div class="photo-item" data-cat="events" style="background: linear-gradient(135deg, #1a1008 0%, #2e1e05 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Event Photo</div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_0005.JPG" alt="Event">
       <div class="photo-overlay"><span class="photo-label">Events</span></div>
     </div>
-    <div class="photo-item" data-cat="sports" style="background: linear-gradient(135deg, #08101a 0%, #0e1e2e 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Sports Photo</div>
+    <div class="photo-item" data-cat="sports">
+      <img src="images/photography/IMG_0012.JPG" alt="Sports">
       <div class="photo-overlay"><span class="photo-label">Sports</span></div>
     </div>
-    <div class="photo-item" data-cat="portraits" style="background: linear-gradient(135deg, #120a0a 0%, #1e0e0e 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Portrait</div>
+    <div class="photo-item" data-cat="portraits">
+      <img src="images/photography/IMG_0016.JPG" alt="Portrait">
       <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
     </div>
-    <div class="photo-item" data-cat="concerts" style="background: linear-gradient(135deg, #100818 0%, #1a0a28 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Concert Photo</div>
+    <div class="photo-item" data-cat="concerts">
+      <img src="images/photography/IMG_0017.JPG" alt="Concert">
       <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
     </div>
-    <div class="photo-item" data-cat="lifestyle" style="background: linear-gradient(135deg, #0a120a 0%, #0e1e10 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Lifestyle Photo</div>
+    <div class="photo-item" data-cat="lifestyle">
+      <img src="images/photography/IMG_0028.jpg" alt="Lifestyle">
       <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
     </div>
-    <div class="photo-item" data-cat="events" style="background: linear-gradient(135deg, #1a1208 0%, #281c06 100%);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Event Photo</div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_0048.JPG" alt="Event">
       <div class="photo-overlay"><span class="photo-label">Events</span></div>
     </div>
+    <div class="photo-item" data-cat="portraits">
+      <img src="images/photography/IMG_0067.JPG" alt="Portrait">
+      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
+    </div>
+    <div class="photo-item" data-cat="sports">
+      <img src="images/photography/IMG_0100.JPG" alt="Sports">
+      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
+    </div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_0111.JPG" alt="Event">
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+    <div class="photo-item" data-cat="concerts">
+      <img src="images/photography/IMG_0136.JPG" alt="Concert">
+      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
+    </div>
+    <div class="photo-item" data-cat="lifestyle">
+      <img src="images/photography/IMG_0148.JPG" alt="Lifestyle">
+      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    </div>
+    <div class="photo-item" data-cat="portraits">
+      <img src="images/photography/IMG_0161.JPG" alt="Portrait">
+      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
+    </div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_0179.JPG" alt="Event">
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+    <div class="photo-item" data-cat="concerts">
+      <img src="images/photography/IMG_0259.JPG" alt="Concert">
+      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
+    </div>
+    <div class="photo-item" data-cat="sports">
+      <img src="images/photography/IMG_0324.JPG" alt="Sports">
+      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
+    </div>
+    <div class="photo-item" data-cat="lifestyle">
+      <img src="images/photography/IMG_0414.JPG" alt="Lifestyle">
+      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    </div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_0419.JPG" alt="Event">
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+    <div class="photo-item" data-cat="lifestyle">
+      <img src="images/photography/IMG_4223.jpg" alt="Lifestyle">
+      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    </div>
+    <div class="photo-item" data-cat="portraits">
+      <img src="images/photography/IMG_4269.jpg" alt="Portrait">
+      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
+    </div>
+    <div class="photo-item" data-cat="sports">
+      <img src="images/photography/IMG_4955.JPG" alt="Sports">
+      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
+    </div>
+    <div class="photo-item" data-cat="events">
+      <img src="images/photography/IMG_5156.JPG" alt="Event">
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+    <div class="photo-item" data-cat="portraits">
+      <img src="images/photography/DSC04441.JPG" alt="Portrait">
+      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
+    </div>
+    <div class="photo-item" data-cat="lifestyle">
+      <img src="images/photography/DSC04491.jpg" alt="Lifestyle">
+      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    </div>
   </div>
-  <p style="font-size:12px;color:var(--text-dim);margin-top:20px;letter-spacing:1px;">
-    ↑ Replace placeholder tiles with your real photos by setting the <code style="color:var(--gold);font-size:11px;">src</code> attribute on each <code style="color:var(--gold);font-size:11px;">&lt;img&gt;</code> tag.
-  </p>
 </section>
 
 <!-- WEB DEVELOPMENT -->
@@ -611,20 +687,84 @@
     From editorial photoshoots to brand partnerships — I collaborate with brands and creatives that align with an authentic, elevated lifestyle. Whether you're looking for a fresh face for a campaign or a content partner to grow your brand, let's build something together.
   </p>
   <div class="modeling-grid">
-    <div class="modeling-item" style="background: linear-gradient(160deg, #1a1012, #0e0810);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+    <div class="modeling-item">
+      <img src="images/modeling/photo-aug-30.jpg" alt="Shoot">
       <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
     </div>
-    <div class="modeling-item" style="background: linear-gradient(160deg, #0e1018, #080c14);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+    <div class="modeling-item">
+      <img src="images/modeling/photo-pm.jpg" alt="Shoot">
       <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
     </div>
-    <div class="modeling-item" style="background: linear-gradient(160deg, #101810, #0a140a);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+    <div class="modeling-item">
+      <img src="images/modeling/AfterlightImage.jpg" alt="Shoot">
       <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
     </div>
-    <div class="modeling-item" style="background: linear-gradient(160deg, #18100e, #100a08);">
-      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+    <div class="modeling-item">
+      <img src="images/modeling/dsc03104.arw.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/AfterlightImage (1).jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/AfterlightImage (2).jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/dsc03998_vsco.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/dsc04045_vsco.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/dsc04053_vsco.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/dsc04508_vsco (1).jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/IMG_0408.JPG" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/IMG_1537.JPG" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/IMG_2861.JPG" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/A0FFE805-985D-45FD-8FFE-34D9CBDD2522.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/3B19084A-C85B-4D0F-AB3C-658D81AD9AD3.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/6FDB23A3-D128-4582-A1E5-568F956A2B7E.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/4A3706AF-045B-4DFE-97E0-55B782EB96E1.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/0EF73006-AF32-4B05-A348-BBD4532F92DC.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/1A054172-76B7-400D-AD69-BB04572556D8.jpg" alt="Shoot">
+      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
+    </div>
+    <div class="modeling-item">
+      <img src="images/modeling/851164E6-B1E2-4543-969D-1F5AD22F41DC (1).jpg" alt="Shoot">
       <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
     </div>
   </div>
@@ -700,7 +840,7 @@
       <div class="section-label">Get In Touch</div>
       <h2 class="section-title" style="font-size: clamp(32px,4vw,52px);margin-bottom:24px;">Let's <em>Work</em><br>Together</h2>
       <p class="contact-info-text">Whether you have a photography booking, a development project, a brand partnership idea, or a real estate lead — I want to hear from you. Drop me a message and I'll get back to you personally.</p>
-      <a href="mailto:cjrochester24@gmail.com" class="contact-email">cjrochester24@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#385b524a575b505d4b4c5d4a0a0c785f55595154165b5755" class="contact-email"><span class="__cf_email__" data-cfemail="6c0f061e030f04091f18091e5e582c0b010d0500420f0301">[email&#160;protected]</span></a>
       <a href="https://www.instagram.com/doyoucj/" target="_blank" class="contact-email" style="display:inline-flex;align-items:center;gap:7px;margin-top:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@doyoucj</a>
       <p style="font-size:12px;color:var(--text-dim);margin-top:32px;line-height:1.8;">
         Based on the East Coast · Available for remote &amp; in-person work
@@ -764,7 +904,7 @@
   <div>© 2025 CJ Rochester. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Photo category filter
 function filterPhotos(btn, cat) {
   document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
@@ -805,13 +945,4 @@ window.addEventListener('scroll', () => {
     if (window.scrollY >= s.offsetTop - 200) current = s.id;
   });
   navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
-  });
-});
-
-// Fade-in on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
-  });
-}, { thres
+    a.style.color = a.getAttribute('href') === '#' + current ? 'va
