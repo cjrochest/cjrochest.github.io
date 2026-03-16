@@ -51,7 +51,8 @@
     transition: color 0.3s; white-space: nowrap;
   }
   .nav-links a:hover { color: var(--gold); }
-  .nav-ig { display: flex; align-items: center; gap: 5px; }
+  .nav-ig { display: inline-flex; align-items: center; gap: 5px; }
+  .nav-ig svg { display: block; flex-shrink: 0; }
   /* Hamburger */
   .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
   .nav-toggle span { width: 22px; height: 1px; background: var(--gold); display: block; transition: all 0.3s; }
