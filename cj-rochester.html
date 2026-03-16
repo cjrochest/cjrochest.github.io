@@ -136,14 +136,21 @@
   /* ── SERVICES GRID ── */
   #services { padding-top: 80px; }
   .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 1px; background: var(--border);
     border: 1px solid var(--border);
   }
+  .services-row2 {
+    display: flex; justify-content: center;
+    background: var(--border);
+    border: 1px solid var(--border); border-top: none;
+  }
+  .services-row2 .service-card { width: 25%; flex-shrink: 0; }
   .service-card {
-    background: var(--dark-2); padding: 50px 40px;
+    background: var(--dark-2); padding: 48px 36px;
     cursor: pointer; transition: background 0.3s;
     position: relative; overflow: hidden;
+    text-decoration: none; display: block;
   }
   .service-card::before {
     content: ''; position: absolute; bottom: 0; left: 0;
@@ -153,15 +160,15 @@
   .service-card:hover { background: var(--dark-3); }
   .service-card:hover::before { width: 100%; }
   .service-num {
-    font-size: 11px; letter-spacing: 3px; color: var(--gold);
-    margin-bottom: 24px; display: block;
+    font-size: 13px; font-weight: 500; color: var(--gold);
+    margin-bottom: 24px; display: block; font-family: 'DM Sans', sans-serif;
   }
-  .service-icon { font-size: 28px; margin-bottom: 20px; filter: saturate(0.5); }
+  .service-icon { font-size: 26px; margin-bottom: 18px; filter: saturate(0.5); }
   .service-name {
-    font-family: 'Playfair Display', serif; font-size: 22px;
-    color: var(--white); margin-bottom: 14px; font-weight: 700;
+    font-family: 'Playfair Display', serif; font-size: 20px;
+    color: var(--white); margin-bottom: 12px; font-weight: 700;
   }
-  .service-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .service-desc { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
 
   /* ── PHOTOGRAPHY ── */
   #photography { border-top: 1px solid var(--border); }
@@ -177,6 +184,27 @@
   .photo-cat-btn:hover, .photo-cat-btn.active {
     background: var(--gold); border-color: var(--gold); color: var(--dark);
   }
+  /* Event types grid */
+  .event-types-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+  .event-type-card {
+    background: var(--dark-2); padding: 32px 28px;
+    transition: background 0.3s; position: relative; overflow: hidden;
+  }
+  .event-type-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold); transition: width 0.4s;
+  }
+  .event-type-card:hover { background: var(--dark-3); }
+  .event-type-card:hover::before { width: 100%; }
+  .event-type-icon { font-size: 24px; margin-bottom: 14px; filter: saturate(0.6); }
+  .event-type-name {
+    font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .event-type-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
   .photo-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 3px;
@@ -219,12 +247,16 @@
   .webdev-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .site-types-list { display: flex; flex-direction: column; gap: 1px; }
   .site-type {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 0; border-bottom: 1px solid var(--border);
-    color: var(--cream); font-size: 15px; cursor: default;
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+    transition: padding-left 0.2s;
+  }
+  .site-type:hover { padding-left: 8px; }
+  .site-type-name {
+    font-size: 15px; color: var(--cream); font-weight: 500; margin-bottom: 5px;
     transition: color 0.2s;
   }
-  .site-type:hover { color: var(--gold); }
+  .site-type:hover .site-type-name { color: var(--gold); }
+  .site-type-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
   .site-type-arrow { color: var(--gold); font-size: 18px; opacity: 0.5; }
   .aws-section { }
   .aws-title {
@@ -389,18 +421,22 @@
   @media (max-width: 900px) {
     section { padding: 80px 24px; }
     .webdev-layout, .health-layout, .re-layout, .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-    .photo-grid { grid-template-columns: 1fr 1fr; }
-    .photo-item:first-child { grid-row: span 1; }
-    .modeling-grid { grid-template-columns: 1fr 1fr; }
-    .modeling-item:nth-child(2), .modeling-item:nth-child(4) { margin-top: 0; }
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .modeling-grid { grid-template-columns: repeat(2, 1fr); }
     .content-partnership { grid-template-columns: 1fr; gap: 28px; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     .form-row { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-row2 .service-card { width: 50%; }
+    .event-types-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .hero-name { font-size: 80px; letter-spacing: 16px; }
-    .photo-grid, .modeling-grid { grid-template-columns: 1fr; }
+    .photo-grid, .modeling-grid { grid-template-columns: repeat(2, 1fr); }
     .re-stats { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .services-row2 .service-card { width: 100%; }
+    .event-types-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -447,32 +483,34 @@
     <h2 class="section-title">Services &amp; <em>Offerings</em></h2>
   </div>
   <div class="services-grid">
-    <a href="#photography" class="service-card" style="text-decoration:none;">
-      <span class="service-num">01</span>
+    <a href="#photography" class="service-card">
+      <span class="service-num">1</span>
       <div class="service-icon">📷</div>
       <div class="service-name">Photography</div>
       <p class="service-desc">Events, portraits, sports, and lifestyle. Every shoot tells a story — yours, captured with precision and artistry.</p>
     </a>
-    <a href="#webdev" class="service-card" style="text-decoration:none;">
-      <span class="service-num">02</span>
+    <a href="#webdev" class="service-card">
+      <span class="service-num">2</span>
       <div class="service-icon">💻</div>
       <div class="service-name">Web Development</div>
       <p class="service-desc">AWS-certified. Full-stack capable. From personal brands to enterprise platforms — built to perform and scale.</p>
     </a>
-    <a href="#health" class="service-card" style="text-decoration:none;">
-      <span class="service-num">03</span>
+    <a href="#health" class="service-card">
+      <span class="service-num">3</span>
       <div class="service-icon">⚡</div>
       <div class="service-name">Health Fundamentals</div>
       <p class="service-desc">A digital wellness system designed to help you build sustainable health habits from the ground up.</p>
     </a>
-    <a href="#modeling" class="service-card" style="text-decoration:none;">
-      <span class="service-num">04</span>
+    <a href="#modeling" class="service-card">
+      <span class="service-num">4</span>
       <div class="service-icon">✦</div>
       <div class="service-name">Content &amp; Modeling</div>
       <p class="service-desc">Brand partnerships, editorial shoots, and creative collaborations for brands aligned with an authentic lifestyle.</p>
     </a>
-    <a href="#realestate" class="service-card" style="text-decoration:none; grid-column: span 2;">
-      <span class="service-num">05</span>
+  </div>
+  <div class="services-row2">
+    <a href="#realestate" class="service-card">
+      <span class="service-num">5</span>
       <div class="service-icon">🏢</div>
       <div class="service-name">Real Estate Investment</div>
       <p class="service-desc">Actively building a multi-family housing portfolio. Interested in leads, joint ventures, or investment opportunities — let's connect.</p>
@@ -493,97 +531,79 @@
     <button class="photo-cat-btn" onclick="filterPhotos(this, 'concerts')">Concerts</button>
   </div>
   <div class="photo-grid" id="photoGrid">
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_0005.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_4269.jpg" alt="Portrait"></div>
+    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0136.JPG" alt="Concert"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0028.jpg" alt="Lifestyle"></div>
+    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_4955.JPG" alt="Sports"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0419.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="portraits"><img src="images/photography/DSC04441.JPG" alt="Portrait"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0148.JPG" alt="Lifestyle"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0005.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0259.JPG" alt="Concert"></div>
+    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0012.JPG" alt="Sports"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_5156.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/DSC04491.jpg" alt="Lifestyle"></div>
+    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0324.JPG" alt="Sports"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0179.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_0067.JPG" alt="Portrait"></div>
+    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0017.JPG" alt="Concert"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_4223.jpg" alt="Lifestyle"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0111.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_0161.JPG" alt="Portrait"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0414.JPG" alt="Lifestyle"></div>
+    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0100.JPG" alt="Sports"></div>
+    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0048.JPG" alt="Event"></div>
+    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0016.JPG" alt="Lifestyle"></div>
+  </div>
+
+  <!-- EVENT TYPES -->
+  <div style="margin-top: 80px;">
+    <div class="section-label">What I Shoot</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);color:var(--white);font-weight:700;margin-bottom:40px;">Events I <em style="color:var(--gold);font-style:italic;">Cover</em></h3>
+    <div class="event-types-grid">
+      <div class="event-type-card">
+        <div class="event-type-icon">💍</div>
+        <div class="event-type-name">Weddings</div>
+        <p class="event-type-desc">Every detail of your day — from getting ready to the last dance — captured beautifully and authentically.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">🎂</div>
+        <div class="event-type-name">Birthday Parties</div>
+        <p class="event-type-desc">Milestone moments and candid celebrations captured so you can be present while I handle the memories.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">👶</div>
+        <div class="event-type-name">Baby Showers</div>
+        <p class="event-type-desc">Warm, joyful coverage of the people and moments surrounding a new arrival.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">🏆</div>
+        <div class="event-type-name">Sporting Events</div>
+        <p class="event-type-desc">Fast-action shots that freeze the intensity, emotion, and energy of the game.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">🎓</div>
+        <div class="event-type-name">Graduations</div>
+        <p class="event-type-desc">Marking the end of one chapter and the start of something bigger — on and off the stage.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">🎤</div>
+        <div class="event-type-name">Concerts &amp; Shows</div>
+        <p class="event-type-desc">Dynamic, high-energy coverage of live performances, stage moments, and crowd energy.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">🏢</div>
+        <div class="event-type-name">Corporate Events</div>
+        <p class="event-type-desc">Professional coverage of conferences, team events, product launches, and company milestones.</p>
+      </div>
+      <div class="event-type-card">
+        <div class="event-type-icon">👤</div>
+        <div class="event-type-name">Portraits &amp; Headshots</div>
+        <p class="event-type-desc">Clean, confident, and on-brand — whether for professional use or personal branding.</p>
+      </div>
     </div>
-    <div class="photo-item" data-cat="sports">
-      <img src="images/photography/IMG_0012.JPG" alt="Sports">
-      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
-    </div>
-    <div class="photo-item" data-cat="portraits">
-      <img src="images/photography/IMG_0016.JPG" alt="Portrait">
-      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
-    </div>
-    <div class="photo-item" data-cat="concerts">
-      <img src="images/photography/IMG_0017.JPG" alt="Concert">
-      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
-    </div>
-    <div class="photo-item" data-cat="lifestyle">
-      <img src="images/photography/IMG_0028.jpg" alt="Lifestyle">
-      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
-    </div>
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_0048.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
-    </div>
-    <div class="photo-item" data-cat="portraits">
-      <img src="images/photography/IMG_0067.JPG" alt="Portrait">
-      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
-    </div>
-    <div class="photo-item" data-cat="sports">
-      <img src="images/photography/IMG_0100.JPG" alt="Sports">
-      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
-    </div>
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_0111.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
-    </div>
-    <div class="photo-item" data-cat="concerts">
-      <img src="images/photography/IMG_0136.JPG" alt="Concert">
-      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
-    </div>
-    <div class="photo-item" data-cat="lifestyle">
-      <img src="images/photography/IMG_0148.JPG" alt="Lifestyle">
-      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
-    </div>
-    <div class="photo-item" data-cat="portraits">
-      <img src="images/photography/IMG_0161.JPG" alt="Portrait">
-      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
-    </div>
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_0179.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
-    </div>
-    <div class="photo-item" data-cat="concerts">
-      <img src="images/photography/IMG_0259.JPG" alt="Concert">
-      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
-    </div>
-    <div class="photo-item" data-cat="sports">
-      <img src="images/photography/IMG_0324.JPG" alt="Sports">
-      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
-    </div>
-    <div class="photo-item" data-cat="lifestyle">
-      <img src="images/photography/IMG_0414.JPG" alt="Lifestyle">
-      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
-    </div>
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_0419.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
-    </div>
-    <div class="photo-item" data-cat="lifestyle">
-      <img src="images/photography/IMG_4223.jpg" alt="Lifestyle">
-      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
-    </div>
-    <div class="photo-item" data-cat="portraits">
-      <img src="images/photography/IMG_4269.jpg" alt="Portrait">
-      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
-    </div>
-    <div class="photo-item" data-cat="sports">
-      <img src="images/photography/IMG_4955.JPG" alt="Sports">
-      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
-    </div>
-    <div class="photo-item" data-cat="events">
-      <img src="images/photography/IMG_5156.JPG" alt="Event">
-      <div class="photo-overlay"><span class="photo-label">Events</span></div>
-    </div>
-    <div class="photo-item" data-cat="portraits">
-      <img src="images/photography/DSC04441.JPG" alt="Portrait">
-      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
-    </div>
-    <div class="photo-item" data-cat="lifestyle">
-      <img src="images/photography/DSC04491.jpg" alt="Lifestyle">
-      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    <div style="margin-top:40px;">
+      <a href="#contact" class="cta-btn">Book a Shoot →</a>
     </div>
   </div>
 </section>
@@ -598,14 +618,54 @@
         From concept to deployment — I build clean, fast, and scalable websites tailored to your goals. Whether you're an entrepreneur, a business, or a creative, I deliver digital experiences that convert and impress.
       </p>
       <div class="site-types-list">
-        <div class="site-type"><span>Personal Brand &amp; Portfolio Sites</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>E-commerce &amp; Online Stores</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Business &amp; Corporate Sites</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Landing Pages &amp; Sales Funnels</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Blogs &amp; Content Platforms</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Real Estate &amp; Property Sites</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Custom Web Applications</span><span class="site-type-arrow">→</span></div>
-        <div class="site-type"><span>Photography &amp; Creative Portfolios</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Personal Brand &amp; Portfolio Sites</div>
+            <div class="site-type-desc">Your story, your work, your way — a polished online presence that represents you professionally and gets you noticed.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">E-commerce &amp; Online Stores</div>
+            <div class="site-type-desc">Fully functional storefronts with product listings, cart, checkout, and payment integration — built to convert visitors into buyers.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Business &amp; Corporate Sites</div>
+            <div class="site-type-desc">Clean, credible, and conversion-focused sites that establish trust and clearly communicate what your business does and why it matters.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Landing Pages &amp; Sales Funnels</div>
+            <div class="site-type-desc">High-converting single-page experiences designed around one goal — capturing leads, selling a product, or driving a specific action.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Blogs &amp; Content Platforms</div>
+            <div class="site-type-desc">Built for creators and thought leaders who want a clean, readable space to publish, grow an audience, and own their content.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Real Estate &amp; Property Sites</div>
+            <div class="site-type-desc">Property listing pages, agent portfolios, and investor sites — designed to showcase listings and capture serious inquiries.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Custom Web Applications</div>
+            <div class="site-type-desc">Beyond static sites — interactive tools, dashboards, booking systems, and custom-built solutions powered by AWS cloud infrastructure.</div>
+          </div>
+        </div>
+        <div class="site-type">
+          <div>
+            <div class="site-type-name">Photography &amp; Creative Portfolios</div>
+            <div class="site-type-desc">Gallery-focused sites built for photographers, artists, and creatives who want their work to be the star — minimal, immersive, and fast.</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="aws-section">
@@ -616,43 +676,43 @@
           <div class="cert-badge">☁️</div>
           <div>
             <div class="cert-name">AWS Certified AI Practitioner</div>
-            <div class="cert-exp">Expires Nov 15, 2027</div>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-badge">⭐</div>
           <div>
             <div class="cert-name">AWS Certified AI Practitioner Early Adopter</div>
-            <div class="cert-exp">Issued Nov 15, 2024</div>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-badge">☁️</div>
           <div>
             <div class="cert-name">AWS Certified Cloud Practitioner</div>
-            <div class="cert-exp">Expires Nov 3, 2028</div>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-badge">💻</div>
           <div>
             <div class="cert-name">AWS Certified Developer – Associate</div>
-            <div class="cert-exp">Expires Nov 3, 2028</div>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-badge">🏗️</div>
           <div>
             <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
-            <div class="cert-exp">Expires Nov 1, 2027</div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div style="margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+    <div>
+      <p style="font-family:'Playfair Display',serif;font-size:22px;color:var(--white);font-weight:700;margin-bottom:6px;">Ready to build something?</p>
+      <p style="font-size:14px;color:var(--text-muted);">Tell me about your project and I'll get back to you within 48 hours.</p>
+    </div>
+    <a href="#contact" class="cta-btn" onclick="document.querySelector('[name=service]').value='webdev'">Inquire About Web Development →</a>
+  </div>
 </section>
-
-<!-- HEALTH FUNDAMENTALS -->
 <section id="health">
   <div class="health-layout">
     <div class="health-text">
@@ -671,7 +731,7 @@
     </div>
     <div class="health-visual">
       <div class="health-price-label">Core System</div>
-      <div class="health-price"><span>$</span>39–49</div>
+      <div class="health-price"><span>$</span>29–69</div>
       <div class="health-tier">Paid Digital Tier</div>
       <a href="https://cjrochest.github.io/HealthFundamentals/" target="_blank" class="cta-btn" style="display:inline-block;font-size:11px;">Get Started</a>
       <div class="health-free">Free Starter Week also available — no commitment</div>
@@ -687,86 +747,26 @@
     From editorial photoshoots to brand partnerships — I collaborate with brands and creatives that align with an authentic, elevated lifestyle. Whether you're looking for a fresh face for a campaign or a content partner to grow your brand, let's build something together.
   </p>
   <div class="modeling-grid">
-    <div class="modeling-item">
-      <img src="images/modeling/photo-aug-30.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/photo-pm.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/AfterlightImage.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/dsc03104.arw.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/AfterlightImage (1).jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/AfterlightImage (2).jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/dsc03998_vsco.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/dsc04045_vsco.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/dsc04053_vsco.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/dsc04508_vsco (1).jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/IMG_0408.JPG" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/IMG_1537.JPG" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/IMG_2861.JPG" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/A0FFE805-985D-45FD-8FFE-34D9CBDD2522.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/3B19084A-C85B-4D0F-AB3C-658D81AD9AD3.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/6FDB23A3-D128-4582-A1E5-568F956A2B7E.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/4A3706AF-045B-4DFE-97E0-55B782EB96E1.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/0EF73006-AF32-4B05-A348-BBD4532F92DC.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/1A054172-76B7-400D-AD69-BB04572556D8.jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
-    </div>
-    <div class="modeling-item">
-      <img src="images/modeling/851164E6-B1E2-4543-969D-1F5AD22F41DC (1).jpg" alt="Shoot">
-      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
-    </div>
+    <div class="modeling-item"><img src="images/modeling/photo-aug-30.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/photo-pm.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc03104.arw.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage (1).jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage (2).jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc03998_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04045_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04053_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04508_vsco (1).jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/IMG_0408.JPG" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/IMG_1537.JPG" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/IMG_2861.JPG" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/A0FFE805-985D-45FD-8FFE-34D9CBDD2522.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/3B19084A-C85B-4D0F-AB3C-658D81AD9AD3.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/6FDB23A3-D128-4582-A1E5-568F956A2B7E.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/4A3706AF-045B-4DFE-97E0-55B782EB96E1.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/0EF73006-AF32-4B05-A348-BBD4532F92DC.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/1A054172-76B7-400D-AD69-BB04572556D8.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/851164E6-B1E2-4543-969D-1F5AD22F41DC (1).jpg" alt="Shoot"></div>
   </div>
   <div class="content-partnership">
     <div>
