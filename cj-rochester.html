@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CJ Rochester</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #F0EAD6;
+    --dark: #0A0A0A;
+    --dark-2: #111111;
+    --dark-3: #1A1A1A;
+    --dark-4: #222222;
+    --text-muted: #888;
+    --text-dim: #555;
+    --white: #FFFFFF;
+    --border: rgba(201,168,76,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; letter-spacing: 2px;
+    color: var(--gold); text-decoration: none; flex-shrink: 0;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; flex-wrap: nowrap; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: color 0.3s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-ig { display: flex; align-items: center; gap: 5px; }
+  /* Hamburger */
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .nav-toggle span { width: 22px; height: 1px; background: var(--gold); display: block; transition: all 0.3s; }
+  @media (max-width: 1100px) {
+    nav { padding: 16px 28px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none; flex-direction: column; gap: 0;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(10,10,10,0.99); border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 12px 28px; font-size: 12px; letter-spacing: 2px; }
+    .nav-ig { padding: 12px 28px; }
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06), transparent 70%),
+                radial-gradient(ellipse 40% 80% at 10% 90%, rgba(201,168,76,0.04), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+    border: 1px solid var(--border); display: inline-block;
+    padding: 6px 20px; border-radius: 2px;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(96px, 18vw, 200px);
+    font-weight: 300; line-height: 1;
+    color: var(--white); letter-spacing: 24px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-name span { color: var(--gold); font-style: normal; }
+  .hero-tagline {
+    font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--text-muted); margin: 24px 0 40px;
+  }
+  .hero-divider {
+    width: 1px; height: 80px; background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto 40px;
+  }
+  .hero-bio {
+    max-width: 560px; font-size: 16px; color: rgba(240,234,214,0.6);
+    line-height: 1.9; margin: 0 auto;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text-dim); font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    animation: float 2.5s ease-in-out infinite;
+  }
+  .scroll-arrow { width: 1px; height: 50px; background: linear-gradient(to bottom, transparent, var(--gold)); }
+  @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 120px 60px; max-width: 1300px; margin: 0 auto; }
+  .section-label {
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px); font-weight: 700;
+    color: var(--white); line-height: 1.1; margin-bottom: 60px;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+  .gold-line { width: 60px; height: 1px; background: var(--gold); margin-bottom: 60px; }
+
+  /* ── SERVICES GRID ── */
+  #services { padding-top: 80px; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--dark-2); padding: 50px 40px;
+    cursor: pointer; transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover { background: var(--dark-3); }
+  .service-card:hover::before { width: 100%; }
+  .service-num {
+    font-size: 11px; letter-spacing: 3px; color: var(--gold);
+    margin-bottom: 24px; display: block;
+  }
+  .service-icon { font-size: 28px; margin-bottom: 20px; filter: saturate(0.5); }
+  .service-name {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    color: var(--white); margin-bottom: 14px; font-weight: 700;
+  }
+  .service-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+  /* ── PHOTOGRAPHY ── */
+  #photography { border-top: 1px solid var(--border); }
+  .photo-categories {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .photo-cat-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-muted); padding: 8px 20px; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+  }
+  .photo-cat-btn:hover, .photo-cat-btn.active {
+    background: var(--gold); border-color: var(--gold); color: var(--dark);
+  }
+  .photo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+  .photo-item {
+    aspect-ratio: 3/4; background: var(--dark-4);
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .photo-item:first-child { grid-row: span 2; aspect-ratio: auto; }
+  .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+  .photo-item:hover img { transform: scale(1.05); }
+  .photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 24px;
+  }
+  .photo-item:hover .photo-overlay { opacity: 1; }
+  .photo-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  /* Placeholder gradient tiles when no real images */
+  .photo-placeholder {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim);
+  }
+
+  /* ── WEB DEV ── */
+  #webdev { border-top: 1px solid var(--border); }
+  .webdev-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .site-types-list { display: flex; flex-direction: column; gap: 1px; }
+  .site-type {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+    color: var(--cream); font-size: 15px; cursor: default;
+    transition: color 0.2s;
+  }
+  .site-type:hover { color: var(--gold); }
+  .site-type-arrow { color: var(--gold); font-size: 18px; opacity: 0.5; }
+  .aws-section { }
+  .aws-title {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    color: var(--white); margin-bottom: 8px; font-weight: 700;
+  }
+  .aws-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+  .cert-cards { display: flex; flex-direction: column; gap: 12px; }
+  .cert-card {
+    background: var(--dark-3); border: 1px solid var(--border);
+    padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+    border-radius: 2px; transition: border-color 0.3s;
+  }
+  .cert-card:hover { border-color: var(--gold); }
+  .cert-badge {
+    width: 40px; height: 40px; background: var(--dark-4); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .cert-name { font-size: 13px; color: var(--cream); font-weight: 500; }
+  .cert-exp { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; margin-top: 2px; }
+
+  /* ── HEALTH BUSINESS ── */
+  #health { border-top: 1px solid var(--border); }
+  .health-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
+  .health-text .section-title { margin-bottom: 24px; }
+  .health-desc { font-size: 15px; color: rgba(240,234,214,0.6); line-height: 1.9; margin-bottom: 36px; }
+  .health-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+  .health-feature { display: flex; gap: 16px; align-items: flex-start; }
+  .health-feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 8px; flex-shrink: 0; }
+  .health-feature-text { font-size: 14px; color: var(--text-muted); }
+  .cta-btn {
+    display: inline-block; padding: 16px 36px;
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none; font-family: 'DM Sans', sans-serif;
+    transition: all 0.3s; cursor: pointer;
+  }
+  .cta-btn:hover { background: var(--gold); color: var(--dark); }
+  .health-visual {
+    background: var(--dark-3); border: 1px solid var(--border);
+    padding: 48px 40px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .health-visual::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+  }
+  .health-price-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .health-price { font-family: 'Playfair Display', serif; font-size: 56px; color: var(--gold); font-weight: 700; }
+  .health-price span { font-size: 22px; vertical-align: super; }
+  .health-tier { font-size: 11px; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 28px; }
+  .health-free { font-size: 13px; color: rgba(240,234,214,0.5); margin-top: 20px; }
+
+  /* ── MODELING ── */
+  #modeling { border-top: 1px solid var(--border); }
+  .modeling-intro { max-width: 600px; font-size: 15px; color: rgba(240,234,214,0.6); line-height: 1.9; margin-bottom: 60px; }
+  .modeling-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
+  .modeling-item {
+    aspect-ratio: 2/3; background: var(--dark-4);
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .modeling-item:nth-child(2) { margin-top: 40px; }
+  .modeling-item:nth-child(4) { margin-top: 20px; }
+  .modeling-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+  .modeling-item:hover img { transform: scale(1.08); }
+  .modeling-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: 20px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .modeling-item:hover .modeling-overlay { opacity: 1; }
+  .modeling-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .content-partnership {
+    margin-top: 60px; background: var(--dark-3); border: 1px solid var(--border);
+    padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .partner-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); margin-bottom: 16px; }
+  .partner-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .partner-types { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .partner-tag {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    border: 1px solid var(--border); padding: 6px 14px; color: var(--text-muted);
+    border-radius: 2px;
+  }
+
+  /* ── REAL ESTATE ── */
+  #realestate { border-top: 1px solid var(--border); }
+  .re-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .re-desc { font-size: 15px; color: rgba(240,234,214,0.6); line-height: 1.9; margin-bottom: 36px; }
+  .re-focus { display: flex; flex-direction: column; gap: 1px; margin-bottom: 40px; }
+  .re-focus-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+  }
+  .re-focus-num { font-size: 11px; letter-spacing: 2px; color: var(--gold); font-weight: 500; width: 24px; }
+  .re-focus-text { font-size: 14px; color: var(--cream); }
+  .re-visual {
+    background: var(--dark-3); border: 1px solid var(--border);
+    padding: 40px; position: relative; overflow: hidden;
+  }
+  .re-visual-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 8px; }
+  .re-visual-sub { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 32px; }
+  .re-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .re-stat { }
+  .re-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--white); font-weight: 700; }
+  .re-stat-label { font-size: 12px; color: var(--text-muted); }
+  .re-cta-note { font-size: 13px; color: rgba(240,234,214,0.4); font-style: italic; margin-top: 20px; }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); padding-bottom: 160px; }
+  .contact-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 100px; }
+  .contact-info-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white); margin-bottom: 8px; }
+  .contact-info-text { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; }
+  .contact-email { font-size: 14px; color: var(--gold); text-decoration: none; display: block; margin-bottom: 8px; }
+  .contact-email:hover { text-decoration: underline; }
+  .form-group { margin-bottom: 24px; }
+  .form-label { display: block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; background: var(--dark-3); border: 1px solid var(--border);
+    color: var(--cream); padding: 14px 18px; font-size: 14px;
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+    outline: none; transition: border-color 0.3s; border-radius: 0;
+    appearance: none; -webkit-appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; padding-right: 44px; cursor: pointer; }
+  .form-select option { background: var(--dark-2); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .submit-btn {
+    width: 100%; padding: 18px; background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.3s; margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--gold); color: var(--dark); }
+  .form-success {
+    display: none; text-align: center; padding: 40px;
+    border: 1px solid var(--gold); margin-top: 16px;
+  }
+  .form-success.show { display: block; }
+  .form-success-icon { font-size: 32px; margin-bottom: 12px; }
+  .form-success-text { font-size: 14px; color: var(--text-muted); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-dim);
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-weight: 700; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    section { padding: 80px 24px; }
+    .webdev-layout, .health-layout, .re-layout, .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+    .photo-item:first-child { grid-row: span 1; }
+    .modeling-grid { grid-template-columns: 1fr 1fr; }
+    .modeling-item:nth-child(2), .modeling-item:nth-child(4) { margin-top: 0; }
+    .content-partnership { grid-template-columns: 1fr; gap: 28px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero-name { font-size: 80px; letter-spacing: 16px; }
+    .photo-grid, .modeling-grid { grid-template-columns: 1fr; }
+    .re-stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">CJR</a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#photography">Photos</a></li>
+    <li><a href="#webdev">Dev</a></li>
+    <li><a href="#health">Health</a></li>
+    <li><a href="#modeling">Modeling</a></li>
+    <li><a href="#realestate">Real Estate</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://www.instagram.com/doyoucj/" target="_blank" class="nav-ig"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@doyoucj</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag">Available for Collaboration</div>
+  <h1 class="hero-name"><span>CJ</span></h1>
+  <p class="hero-tagline">Photographer &nbsp;·&nbsp; Developer &nbsp;·&nbsp; Creator &nbsp;·&nbsp; Investor</p>
+  <div class="hero-divider"></div>
+  <p class="hero-bio">
+    A multi-dimensional creative and technologist based on the East Coast — capturing moments through the lens, building digital experiences from the ground up, and investing in the future through people, health, and real estate. Everything I do is intentional. Everything I create is built to last.
+  </p>
+  <div class="scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<div id="services" style="padding: 0 0 0; max-width: 100%; border-top: 1px solid var(--border);">
+  <div style="padding: 80px 60px 0; max-width: 1300px; margin: 0 auto;">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">Services &amp; <em>Offerings</em></h2>
+  </div>
+  <div class="services-grid">
+    <a href="#photography" class="service-card" style="text-decoration:none;">
+      <span class="service-num">01</span>
+      <div class="service-icon">📷</div>
+      <div class="service-name">Photography</div>
+      <p class="service-desc">Events, portraits, sports, and lifestyle. Every shoot tells a story — yours, captured with precision and artistry.</p>
+    </a>
+    <a href="#webdev" class="service-card" style="text-decoration:none;">
+      <span class="service-num">02</span>
+      <div class="service-icon">💻</div>
+      <div class="service-name">Web Development</div>
+      <p class="service-desc">AWS-certified. Full-stack capable. From personal brands to enterprise platforms — built to perform and scale.</p>
+    </a>
+    <a href="#health" class="service-card" style="text-decoration:none;">
+      <span class="service-num">03</span>
+      <div class="service-icon">⚡</div>
+      <div class="service-name">Health Fundamentals</div>
+      <p class="service-desc">A digital wellness system designed to help you build sustainable health habits from the ground up.</p>
+    </a>
+    <a href="#modeling" class="service-card" style="text-decoration:none;">
+      <span class="service-num">04</span>
+      <div class="service-icon">✦</div>
+      <div class="service-name">Content &amp; Modeling</div>
+      <p class="service-desc">Brand partnerships, editorial shoots, and creative collaborations for brands aligned with an authentic lifestyle.</p>
+    </a>
+    <a href="#realestate" class="service-card" style="text-decoration:none; grid-column: span 2;">
+      <span class="service-num">05</span>
+      <div class="service-icon">🏢</div>
+      <div class="service-name">Real Estate Investment</div>
+      <p class="service-desc">Actively building a multi-family housing portfolio. Interested in leads, joint ventures, or investment opportunities — let's connect.</p>
+    </a>
+  </div>
+</div>
+
+<!-- PHOTOGRAPHY -->
+<section id="photography">
+  <div class="section-label">Visual Work</div>
+  <h2 class="section-title">Photography <em>Portfolio</em></h2>
+  <div class="photo-categories">
+    <button class="photo-cat-btn active" onclick="filterPhotos(this, 'all')">All</button>
+    <button class="photo-cat-btn" onclick="filterPhotos(this, 'events')">Events</button>
+    <button class="photo-cat-btn" onclick="filterPhotos(this, 'sports')">Sports</button>
+    <button class="photo-cat-btn" onclick="filterPhotos(this, 'portraits')">Portraits</button>
+    <button class="photo-cat-btn" onclick="filterPhotos(this, 'lifestyle')">Lifestyle</button>
+    <button class="photo-cat-btn" onclick="filterPhotos(this, 'concerts')">Concerts</button>
+  </div>
+  <div class="photo-grid" id="photoGrid">
+    <!-- Each item has data-cat for filtering. Placeholders styled until real images added -->
+    <div class="photo-item" data-cat="events" style="background: linear-gradient(135deg, #1a1008 0%, #2e1e05 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Event Photo</div>
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+    <div class="photo-item" data-cat="sports" style="background: linear-gradient(135deg, #08101a 0%, #0e1e2e 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Sports Photo</div>
+      <div class="photo-overlay"><span class="photo-label">Sports</span></div>
+    </div>
+    <div class="photo-item" data-cat="portraits" style="background: linear-gradient(135deg, #120a0a 0%, #1e0e0e 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Portrait</div>
+      <div class="photo-overlay"><span class="photo-label">Portraits</span></div>
+    </div>
+    <div class="photo-item" data-cat="concerts" style="background: linear-gradient(135deg, #100818 0%, #1a0a28 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Concert Photo</div>
+      <div class="photo-overlay"><span class="photo-label">Concerts</span></div>
+    </div>
+    <div class="photo-item" data-cat="lifestyle" style="background: linear-gradient(135deg, #0a120a 0%, #0e1e10 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Lifestyle Photo</div>
+      <div class="photo-overlay"><span class="photo-label">Lifestyle</span></div>
+    </div>
+    <div class="photo-item" data-cat="events" style="background: linear-gradient(135deg, #1a1208 0%, #281c06 100%);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">📷</span>Upload Event Photo</div>
+      <div class="photo-overlay"><span class="photo-label">Events</span></div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);margin-top:20px;letter-spacing:1px;">
+    ↑ Replace placeholder tiles with your real photos by setting the <code style="color:var(--gold);font-size:11px;">src</code> attribute on each <code style="color:var(--gold);font-size:11px;">&lt;img&gt;</code> tag.
+  </p>
+</section>
+
+<!-- WEB DEVELOPMENT -->
+<section id="webdev">
+  <div class="section-label">Technical Services</div>
+  <h2 class="section-title">Web <em>Development</em></h2>
+  <div class="webdev-layout">
+    <div>
+      <p style="font-size:15px;color:rgba(240,234,214,0.6);line-height:1.9;margin-bottom:36px;">
+        From concept to deployment — I build clean, fast, and scalable websites tailored to your goals. Whether you're an entrepreneur, a business, or a creative, I deliver digital experiences that convert and impress.
+      </p>
+      <div class="site-types-list">
+        <div class="site-type"><span>Personal Brand &amp; Portfolio Sites</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>E-commerce &amp; Online Stores</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Business &amp; Corporate Sites</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Landing Pages &amp; Sales Funnels</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Blogs &amp; Content Platforms</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Real Estate &amp; Property Sites</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Custom Web Applications</span><span class="site-type-arrow">→</span></div>
+        <div class="site-type"><span>Photography &amp; Creative Portfolios</span><span class="site-type-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="aws-section">
+      <div class="aws-title">AWS Certified</div>
+      <p class="aws-sub">Backed by multiple Amazon Web Services certifications — I bring cloud expertise to every project, ensuring sites are built on reliable, scalable infrastructure.</p>
+      <div class="cert-cards">
+        <div class="cert-card">
+          <div class="cert-badge">☁️</div>
+          <div>
+            <div class="cert-name">AWS Certified AI Practitioner</div>
+            <div class="cert-exp">Expires Nov 15, 2027</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">⭐</div>
+          <div>
+            <div class="cert-name">AWS Certified AI Practitioner Early Adopter</div>
+            <div class="cert-exp">Issued Nov 15, 2024</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">☁️</div>
+          <div>
+            <div class="cert-name">AWS Certified Cloud Practitioner</div>
+            <div class="cert-exp">Expires Nov 3, 2028</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">💻</div>
+          <div>
+            <div class="cert-name">AWS Certified Developer – Associate</div>
+            <div class="cert-exp">Expires Nov 3, 2028</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🏗️</div>
+          <div>
+            <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
+            <div class="cert-exp">Expires Nov 1, 2027</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH FUNDAMENTALS -->
+<section id="health">
+  <div class="health-layout">
+    <div class="health-text">
+      <div class="section-label">Online Business</div>
+      <h2 class="section-title">Health <em>Fundamentals</em></h2>
+      <p class="health-desc">
+        I built Health Fundamentals to give people the no-fluff, sustainable foundation for a healthier life. No trendy diets. No 90-day challenges. Just the core principles — nutrition, sleep, movement, hydration — built into a system that actually sticks.
+      </p>
+      <div class="health-features">
+        <div class="health-feature"><div class="health-feature-dot"></div><div class="health-feature-text">Free Starter Week — a Google Sheet + PDF system to kick off your health journey</div></div>
+        <div class="health-feature"><div class="health-feature-dot"></div><div class="health-feature-text">Core System — a complete digital toolkit covering all 4 health fundamentals</div></div>
+        <div class="health-feature"><div class="health-feature-dot"></div><div class="health-feature-text">Designed for people who want results without the overwhelm</div></div>
+        <div class="health-feature"><div class="health-feature-dot"></div><div class="health-feature-text">Built on the same systems I use personally — tested and refined over time</div></div>
+      </div>
+      <a href="https://cjrochest.github.io/HealthFundamentals/" target="_blank" class="cta-btn">Explore Health Fundamentals →</a>
+    </div>
+    <div class="health-visual">
+      <div class="health-price-label">Core System</div>
+      <div class="health-price"><span>$</span>39–49</div>
+      <div class="health-tier">Paid Digital Tier</div>
+      <a href="https://cjrochest.github.io/HealthFundamentals/" target="_blank" class="cta-btn" style="display:inline-block;font-size:11px;">Get Started</a>
+      <div class="health-free">Free Starter Week also available — no commitment</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT & MODELING -->
+<section id="modeling">
+  <div class="section-label">Creative Work</div>
+  <h2 class="section-title">Modeling &amp; Content <em>Partnerships</em></h2>
+  <p class="modeling-intro">
+    From editorial photoshoots to brand partnerships — I collaborate with brands and creatives that align with an authentic, elevated lifestyle. Whether you're looking for a fresh face for a campaign or a content partner to grow your brand, let's build something together.
+  </p>
+  <div class="modeling-grid">
+    <div class="modeling-item" style="background: linear-gradient(160deg, #1a1012, #0e0810);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+      <div class="modeling-overlay"><span class="modeling-label">Editorial</span></div>
+    </div>
+    <div class="modeling-item" style="background: linear-gradient(160deg, #0e1018, #080c14);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+      <div class="modeling-overlay"><span class="modeling-label">Campaign</span></div>
+    </div>
+    <div class="modeling-item" style="background: linear-gradient(160deg, #101810, #0a140a);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+      <div class="modeling-overlay"><span class="modeling-label">Lifestyle</span></div>
+    </div>
+    <div class="modeling-item" style="background: linear-gradient(160deg, #18100e, #100a08);">
+      <div class="photo-placeholder" style="flex-direction:column;gap:8px;"><span style="font-size:32px;filter:opacity(0.3)">✦</span>Upload Shoot Photo</div>
+      <div class="modeling-overlay"><span class="modeling-label">Brand</span></div>
+    </div>
+  </div>
+  <div class="content-partnership">
+    <div>
+      <div class="partner-title">Content Partnerships</div>
+      <p class="partner-desc">
+        I'm open to brand deals, ambassador roles, sponsored content, and creative collaborations that align with my personal brand — health, lifestyle, tech, and style. If you have a project in mind, let's talk.
+      </p>
+      <div class="partner-types">
+        <span class="partner-tag">Brand Deals</span>
+        <span class="partner-tag">Ambassadorships</span>
+        <span class="partner-tag">Sponsored Content</span>
+        <span class="partner-tag">Creative Collabs</span>
+        <span class="partner-tag">Editorial Work</span>
+      </div>
+    </div>
+    <div>
+      <a href="#contact" class="cta-btn">Inquire About Partnerships →</a>
+    </div>
+  </div>
+</section>
+
+<!-- REAL ESTATE -->
+<section id="realestate">
+  <div class="re-layout">
+    <div>
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">Real Estate <em>Ventures</em></h2>
+      <p class="re-desc">
+        2025 marks the start of my real estate investment journey. My focus is multi-family housing — the kind of investment that builds long-term wealth while creating real value for tenants and communities. I'm actively looking for my first deal, and I welcome leads, partnerships, and connections from those already in the space.
+      </p>
+      <div class="re-focus">
+        <div class="re-focus-item"><span class="re-focus-num">01</span><span class="re-focus-text">Multi-family properties (duplexes, triplexes, small apartment buildings)</span></div>
+        <div class="re-focus-item"><span class="re-focus-num">02</span><span class="re-focus-text">Value-add opportunities with renovation potential</span></div>
+        <div class="re-focus-item"><span class="re-focus-num">03</span><span class="re-focus-text">Joint ventures and partnership structures</span></div>
+        <div class="re-focus-item"><span class="re-focus-num">04</span><span class="re-focus-text">Off-market deals and direct seller connections</span></div>
+        <div class="re-focus-item"><span class="re-focus-num">05</span><span class="re-focus-text">House hacking strategies to build equity faster</span></div>
+      </div>
+      <a href="#contact" class="cta-btn">Share a Lead or Partner Up →</a>
+    </div>
+    <div class="re-visual">
+      <div class="re-visual-title">Target Focus</div>
+      <div class="re-visual-sub">Multi-Family Housing · 2025 Goal</div>
+      <div class="re-stats">
+        <div class="re-stat">
+          <div class="re-stat-num">2–8</div>
+          <div class="re-stat-label">Unit target range</div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">2025</div>
+          <div class="re-stat-label">First acquisition goal</div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">∞</div>
+          <div class="re-stat-label">Open to partnerships</div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">NE</div>
+          <div class="re-stat-label">Primary market focus</div>
+        </div>
+      </div>
+      <a href="#contact" class="cta-btn" style="display:inline-block;width:100%;text-align:center;">Have a Deal? Let's Talk</a>
+      <p class="re-cta-note">All leads and partnership inquiries welcome — serious investors only please.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title" style="font-size: clamp(32px,4vw,52px);margin-bottom:24px;">Let's <em>Work</em><br>Together</h2>
+      <p class="contact-info-text">Whether you have a photography booking, a development project, a brand partnership idea, or a real estate lead — I want to hear from you. Drop me a message and I'll get back to you personally.</p>
+      <a href="mailto:cjrochester24@gmail.com" class="contact-email">cjrochester24@gmail.com</a>
+      <a href="https://www.instagram.com/doyoucj/" target="_blank" class="contact-email" style="display:inline-flex;align-items:center;gap:7px;margin-top:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@doyoucj</a>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:32px;line-height:1.8;">
+        Based on the East Coast · Available for remote &amp; in-person work
+      </p>
+    </div>
+    <div>
+      <form id="contactForm" action="https://formspree.io/f/xaqppjda" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" name="first_name" class="form-input" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" name="last_name" class="form-input" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-input" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">I'm Interested In</label>
+          <select name="service" class="form-select" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="photography">Photography</option>
+            <option value="webdev">Web Development</option>
+            <option value="health">Health Fundamentals</option>
+            <option value="modeling">Content &amp; Modeling Partnership</option>
+            <option value="realestate">Real Estate — Lead or Partnership</option>
+            <option value="other">Something Else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Message</label>
+          <textarea name="message" class="form-textarea" placeholder="Tell me what you have in mind..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:8px;">Message Sent</div>
+        <div class="form-success-text">Thanks for reaching out — I'll get back to you personally within 48 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CJR</div>
+  <div class="footer-links">
+    <a href="#photography">Photography</a>
+    <a href="#webdev">Web Dev</a>
+    <a href="#health">Health</a>
+    <a href="#modeling">Modeling</a>
+    <a href="#realestate">Real Estate</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.instagram.com/doyoucj/" target="_blank" style="display:inline-flex;align-items:center;gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@doyoucj</a>
+  </div>
+  <div>© 2025 CJ Rochester. All rights reserved.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Photo category filter
+function filterPhotos(btn, cat) {
+  document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#photoGrid .photo-item').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// Form submit handler
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+      }
+    })
+    .catch(() => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    });
+}
+
+// Smooth nav active state on scroll
+const sections = document.querySelectorAll('section[id], div[id="services"]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+  });
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+  });
+}, { thres
