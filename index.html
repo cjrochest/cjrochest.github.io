@@ -173,18 +173,6 @@
 
   /* ── PHOTOGRAPHY ── */
   #photography { border-top: 1px solid var(--border); }
-  .photo-categories {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
-  }
-  .photo-cat-btn {
-    background: transparent; border: 1px solid var(--border);
-    color: var(--text-muted); padding: 8px 20px; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
-    transition: all 0.3s; font-family: 'DM Sans', sans-serif;
-  }
-  .photo-cat-btn:hover, .photo-cat-btn.active {
-    background: var(--gold); border-color: var(--gold); color: var(--dark);
-  }
   /* Event types grid */
   .event-types-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
@@ -524,38 +512,33 @@
 <section id="photography">
   <div class="section-label">Visual Work</div>
   <h2 class="section-title">Photography <em>Portfolio</em></h2>
-  <div class="photo-categories">
-    <button class="photo-cat-btn active" onclick="filterPhotos(this, 'all')">All</button>
-    <button class="photo-cat-btn" onclick="filterPhotos(this, 'events')">Events</button>
-    <button class="photo-cat-btn" onclick="filterPhotos(this, 'sports')">Sports</button>
-    <button class="photo-cat-btn" onclick="filterPhotos(this, 'portraits')">Portraits</button>
-    <button class="photo-cat-btn" onclick="filterPhotos(this, 'lifestyle')">Lifestyle</button>
-    <button class="photo-cat-btn" onclick="filterPhotos(this, 'concerts')">Concerts</button>
-  </div>
   <div class="photo-grid" id="photoGrid">
-    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_4269.jpg" alt="Portrait"></div>
-    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0136.JPG" alt="Concert"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0028.jpg" alt="Lifestyle"></div>
-    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_4955.JPG" alt="Sports"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0419.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="portraits"><img src="images/photography/DSC04441.JPG" alt="Portrait"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0148.JPG" alt="Lifestyle"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0005.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0259.JPG" alt="Concert"></div>
-    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0012.JPG" alt="Sports"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_5156.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/DSC04491.jpg" alt="Lifestyle"></div>
-    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0324.JPG" alt="Sports"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0179.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_0067.JPG" alt="Portrait"></div>
-    <div class="photo-item" data-cat="concerts"><img src="images/photography/IMG_0017.JPG" alt="Concert"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_4223.jpg" alt="Lifestyle"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0111.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="portraits"><img src="images/photography/IMG_0161.JPG" alt="Portrait"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0414.JPG" alt="Lifestyle"></div>
-    <div class="photo-item" data-cat="sports"><img src="images/photography/IMG_0100.JPG" alt="Sports"></div>
-    <div class="photo-item" data-cat="events"><img src="images/photography/IMG_0048.JPG" alt="Event"></div>
-    <div class="photo-item" data-cat="lifestyle"><img src="images/photography/IMG_0016.JPG" alt="Lifestyle"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0899.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0028.jpg" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0259.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0900.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_4269.jpg" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/DSC04491.jpg" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0136.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0901.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0179.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_4955.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0148.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0902.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0111.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0017.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0067.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0903.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/DSC04441.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0324.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_4223.jpg" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_5156.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0161.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0005.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0100.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0414.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0048.JPG" alt="Photo"></div>
+    <div class="photo-item"><img src="images/photography/IMG_0016.JPG" alt="Photo"></div>
   </div>
 
   <!-- EVENT TYPES -->
@@ -749,26 +732,26 @@
     From editorial photoshoots to brand partnerships — I collaborate with brands and creatives that align with an authentic, elevated lifestyle. Whether you're looking for a fresh face for a campaign or a content partner to grow your brand, let's build something together.
   </p>
   <div class="modeling-grid">
-    <div class="modeling-item"><img src="images/modeling/photo-aug-30.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/photo-pm.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/AfterlightImage.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/dsc03104.arw.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/AfterlightImage (1).jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/AfterlightImage (2).jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/dsc03998_vsco.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/dsc04045_vsco.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/dsc04053_vsco.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/dsc04508_vsco (1).jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/IMG_0408.JPG" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/IMG_1537.JPG" alt="Shoot"></div>
     <div class="modeling-item"><img src="images/modeling/IMG_2861.JPG" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/A0FFE805-985D-45FD-8FFE-34D9CBDD2522.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/3B19084A-C85B-4D0F-AB3C-658D81AD9AD3.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/6FDB23A3-D128-4582-A1E5-568F956A2B7E.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/4A3706AF-045B-4DFE-97E0-55B782EB96E1.jpg" alt="Shoot"></div>
-    <div class="modeling-item"><img src="images/modeling/0EF73006-AF32-4B05-A348-BBD4532F92DC.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04053_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage (1).jpg" alt="Shoot"></div>
     <div class="modeling-item"><img src="images/modeling/1A054172-76B7-400D-AD69-BB04572556D8.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc03998_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/photo-pm.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/IMG_1537.JPG" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/0EF73006-AF32-4B05-A348-BBD4532F92DC.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04508_vsco (1).jpg" alt="Shoot"></div>
     <div class="modeling-item"><img src="images/modeling/851164E6-B1E2-4543-969D-1F5AD22F41DC (1).jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/IMG_0408.JPG" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/3B19084A-C85B-4D0F-AB3C-658D81AD9AD3.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc04045_vsco.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/photo-aug-30.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/A0FFE805-985D-45FD-8FFE-34D9CBDD2522.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/AfterlightImage (2).jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/6FDB23A3-D128-4582-A1E5-568F956A2B7E.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/dsc03104.arw.jpg" alt="Shoot"></div>
+    <div class="modeling-item"><img src="images/modeling/4A3706AF-045B-4DFE-97E0-55B782EB96E1.jpg" alt="Shoot"></div>
   </div>
   <div class="content-partnership">
     <div>
@@ -907,19 +890,6 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Photo category filter
-function filterPhotos(btn, cat) {
-  document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#photoGrid .photo-item').forEach(item => {
-    if (cat === 'all' || item.dataset.cat === cat) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-}
-
 // Form submit handler
 function handleSubmit(e) {
   e.preventDefault();
