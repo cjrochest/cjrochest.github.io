@@ -327,9 +327,13 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
     }
-    .cert-card:hover { border-color: rgba(79,195,161,0.3); }
+    .cert-card:hover {
+      border-color: rgba(79,195,161,0.3);
+      transform: translateY(-2px);
+    }
 
     .cert-name {
       font-size: 13px;
@@ -595,26 +599,26 @@
       <div class="section-line"></div>
     </div>
     <div class="certs-grid">
-      <div class="cert-card">
+      <a class="cert-card" href="https://www.credly.com/badges/569c2da0-6ea7-4573-88ed-e479e4e6a9ca" target="_blank" rel="noopener">
         <div class="cert-name">AWS Cloud Practitioner</div>
         <div class="cert-date">Issued Aug 2024</div>
-        <span class="cert-badge">AWS</span>
-      </div>
-      <div class="cert-card">
+        <span class="cert-badge">AWS ↗</span>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/7c0d7392-f048-49cf-a438-58197bb52977" target="_blank" rel="noopener">
         <div class="cert-name">AWS Solutions Architect</div>
         <div class="cert-date">Associate — Nov 2024</div>
-        <span class="cert-badge">AWS</span>
-      </div>
-      <div class="cert-card">
+        <span class="cert-badge">AWS ↗</span>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/0f88dacf-7437-42a0-9d7a-f967f1a28c8a" target="_blank" rel="noopener">
         <div class="cert-name">AWS AI Practitioner</div>
         <div class="cert-date">Issued Nov 2024</div>
-        <span class="cert-badge">AWS</span>
-      </div>
-      <div class="cert-card">
+        <span class="cert-badge">AWS ↗</span>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/9845cee9-b4ad-402e-bdd2-bab2b940478e" target="_blank" rel="noopener">
         <div class="cert-name">AWS Developer Associate</div>
         <div class="cert-date">Issued Nov 2025</div>
-        <span class="cert-badge">AWS</span>
-      </div>
+        <span class="cert-badge">AWS ↗</span>
+      </a>
       <div class="cert-card">
         <div class="cert-name">SNHU Cybersecurity Certificate</div>
         <div class="cert-date">In Progress — Expected 2026</div>
