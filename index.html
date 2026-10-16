@@ -52,11 +52,17 @@
     height: calc(var(--header-h) + env(safe-area-inset-top));
     padding: env(safe-area-inset-top) var(--gutter) 0;
     display: flex; align-items: center; justify-content: space-between;
-    transition: background .3s, border-color .3s;
-    border-bottom: 1px solid transparent;
   }
-  .header.scrolled { background: rgba(14,13,12,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
-  .logo { font-family: var(--serif); font-size: 26px; text-decoration: none; letter-spacing: .5px; }
+  /* Blur lives on a pseudo-element: backdrop-filter on .header itself would trap the fixed .nav overlay inside the header box */
+  .header::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: rgba(14,13,12,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    opacity: 0; transition: opacity .3s;
+  }
+  .header.scrolled::before { opacity: 1; }
+  .menu-open .header::before { opacity: 0; }
+  .logo { font-family: var(--serif); font-size: 26px; text-decoration: none; letter-spacing: .5px; position: relative; z-index: 2; }
   .logo span { color: var(--accent); font-style: italic; }
   .menu-btn {
     width: 44px; height: 44px; margin-right: -10px;
